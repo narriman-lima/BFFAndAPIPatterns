@@ -1,0 +1,46 @@
+graph TB
+    subgraph "Cliente"
+        C[Cliente HTTP<br/>Browser/Mobile App]
+    end
+
+    subgraph "API Gateway (5000)"
+        AG[API Gateway<br/>YARP Reverse Proxy]
+    end
+
+    subgraph "BFF Layer"
+        BFF[BFF.Web (5001)<br/>Backend for Frontend]
+    end
+
+    subgraph "Aggregator Layer"
+        AGG[Aggregator (5002)<br/>Task.WhenAll Parallel]
+    end
+
+    subgraph "Microservices"
+        US[UserService (5003)<br/>/users/{id}]
+        OS[OrderService (5004)<br/>/orders?userId=]
+        PS[ProductService (5005)<br/>/products?ids=]
+    end
+
+    C -->|GET /dashboard| AG
+    AG -->|Proxy Transparente| BFF
+    BFF -->|GET /dashboard-data| AGG
+    
+    AGG -->|Parallel Call| US
+    AGG -->|Parallel Call| OS
+    AGG -->|Parallel Call| PS
+    
+    US -->|Response| AGG
+    OS -->|Response| AGG
+    PS -->|Response| AGG
+    
+    AGG -->|{user, orders, products}| BFF
+    BFF -->|{name, email, totalOrders}| AG
+    AG -->|Final Response| C
+
+    style C fill:#e1f5ff
+    style AG fill:#fff4e1
+    style BFF fill:#e8f5e9
+    style AGG fill:#f3e5f5
+    style US fill:#fce4ec
+    style OS fill:#fce4ec
+    style PS fill:#fce4ec
