@@ -25,7 +25,7 @@ timeout /t 1 /nobreak
 start "Aggregator" cmd /k "cd src\Aggregator && echo Starting Aggregator at http://localhost:5002 && dotnet run"
 timeout /t 1 /nobreak
 
-start "Bff.Web" cmd /k "cd src\Bff.Web && echo Starting Bff.Web at http://localhost:5001 && dotnet run"
+start "Bff" cmd /k "cd src\Bff && echo Starting Bff at http://localhost:5001 && dotnet run"
 timeout /t 1 /nobreak
 
 start "ApiGateway" cmd /k "cd src\ApiGateway && echo Starting ApiGateway at http://localhost:5000 && dotnet run"
@@ -37,7 +37,7 @@ echo ========================================
 echo.
 echo Test the application:
 echo   - API Gateway:  http://localhost:5000/dashboard
-echo   - BFF.Web:      http://localhost:5001/swagger
+echo   - Bff:      http://localhost:5001/swagger
 echo   - Aggregator:   http://localhost:5002/swagger
 echo   - UserService:  http://localhost:5003/swagger
 echo   - OrderService: http://localhost:5004/swagger

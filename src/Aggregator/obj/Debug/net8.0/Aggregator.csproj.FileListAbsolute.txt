@@ -24,6 +24,7 @@ C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\refint\A
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\Aggregator.pdb
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\Aggregator.genruntimeconfig.cache
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\ref\Aggregator.dll
+C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\Aggregator.sourcelink.json
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\bin\Debug\net8.0\Aggregator.staticwebassets.endpoints.json
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\rpswa.dswa.cache.json
 C:\Users\narri\repositorios\projeto-api\src\Aggregator\obj\Debug\net8.0\rjimswa.dswa.cache.json

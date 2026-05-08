@@ -5,6 +5,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -18,6 +19,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.Use(async (context, next) =>
+{
+    logger.LogInformation("[PRODUCT SERVICE] Recebendo requisição: {Method} {Path}", context.Request.Method, context.Request.Path);
+    await next();
+    logger.LogInformation("[PRODUCT SERVICE] Resposta enviada: {StatusCode}", context.Response.StatusCode);
+});
 
 // Mock data
 var products = new List<Product>
@@ -33,14 +41,19 @@ var products = new List<Product>
 app.MapGet("/products", (string? ids) =>
 {
     if (string.IsNullOrEmpty(ids))
+    {
+        logger.LogInformation("[PRODUCT SERVICE] Buscando todos os produtos");
         return Results.Ok(products);
+    }
 
+    logger.LogInformation("[PRODUCT SERVICE] Buscando produtos com IDs: {Ids}", ids);
     var productIds = ids.Split(',')
         .Select(id => int.TryParse(id.Trim(), out var result) ? result : 0)
         .Where(id => id > 0)
         .ToList();
 
     var filteredProducts = products.Where(p => productIds.Contains(p.Id)).ToList();
+    logger.LogInformation("[PRODUCT SERVICE] Encontrados {Count} produtos", filteredProducts.Count);
     return Results.Ok(filteredProducts);
 })
 .WithName("GetProducts");

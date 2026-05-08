@@ -5,6 +5,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -19,6 +20,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.Use(async (context, next) =>
+{
+    logger.LogInformation("[USER SERVICE] Recebendo requisição: {Method} {Path}", context.Request.Method, context.Request.Path);
+    await next();
+    logger.LogInformation("[USER SERVICE] Resposta enviada: {StatusCode}", context.Response.StatusCode);
+});
+
 // Mock data
 var users = new List<User>
 {
@@ -30,8 +38,15 @@ var users = new List<User>
 // Endpoints
 app.MapGet("/users/{id}", (int id) =>
 {
+    logger.LogInformation("[USER SERVICE] Buscando usuário com ID: {UserId}", id);
     var user = users.FirstOrDefault(u => u.Id == id);
-    return user is not null ? Results.Ok(user) : Results.NotFound(new { message = "User not found" });
+    if (user is not null)
+    {
+        logger.LogInformation("[USER SERVICE] Usuário encontrado: {UserName}", user.Name);
+        return Results.Ok(user);
+    }
+    logger.LogWarning("[USER SERVICE] Usuário não encontrado com ID: {UserId}", id);
+    return Results.NotFound(new { message = "User not found" });
 })
 .WithName("GetUser")
 .WithDescription("Get a user by ID");

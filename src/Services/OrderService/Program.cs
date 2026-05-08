@@ -5,6 +5,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -18,6 +19,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.Use(async (context, next) =>
+{
+    logger.LogInformation("[ORDER SERVICE] Recebendo requisição: {Method} {Path}", context.Request.Method, context.Request.Path);
+    await next();
+    logger.LogInformation("[ORDER SERVICE] Resposta enviada: {StatusCode}", context.Response.StatusCode);
+});
 
 // Mock data
 var orders = new List<Order>
@@ -33,9 +41,14 @@ var orders = new List<Order>
 app.MapGet("/orders", (int? userId) =>
 {
     if (userId is null)
+    {
+        logger.LogInformation("[ORDER SERVICE] Buscando todos os pedidos");
         return Results.Ok(orders);
+    }
 
+    logger.LogInformation("[ORDER SERVICE] Buscando pedidos do usuário: {UserId}", userId);
     var userOrders = orders.Where(o => o.UserId == userId).ToList();
+    logger.LogInformation("[ORDER SERVICE] Encontrados {Count} pedidos para o usuário {UserId}", userOrders.Count, userId);
     return Results.Ok(userOrders);
 })
 .WithName("GetOrders");

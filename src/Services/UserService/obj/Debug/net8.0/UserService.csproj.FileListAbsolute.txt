@@ -24,6 +24,7 @@ C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\UserService.pdb
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\UserService.genruntimeconfig.cache
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\ref\UserService.dll
+C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\UserService.sourcelink.json
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\bin\Debug\net8.0\UserService.staticwebassets.endpoints.json
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\rpswa.dswa.cache.json
 C:\Users\narri\repositorios\projeto-api\src\Services\UserService\obj\Debug\net8.0\rjimswa.dswa.cache.json

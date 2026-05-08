@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"Kczxg1rj1JB2QMhBb8pG/S7vpUjGND216J2dpYrW9Vk=","Source":"ApiGateway","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "WwRToFtmtyVdnqQgSd/qzOCr4AjbUNnt4+h/MLZRLKU=",
+  "Source": "ApiGateway",
+  "BasePath": "_content/ApiGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

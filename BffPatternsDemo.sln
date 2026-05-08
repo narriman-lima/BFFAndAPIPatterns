@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aggregator", "src\Aggregato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{8098BCD8-F4F2-4E6C-9D7B-3559D5A9B018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bff.Web", "src\Bff.Web\Bff.Web.csproj", "{B13965C1-4D63-48D0-A2F3-91B1973A6B72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bff", "src\Bff\Bff.csproj", "{B13965C1-4D63-48D0-A2F3-91B1973A6B72}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{984BB9B3-3FA3-BE33-9484-CAC21695A33C}"
 EndProject
